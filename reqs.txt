@@ -1,5 +1,7 @@
 django
 pillow
 pymysql
+bootstrap
+beautifulsoup4
 
 #pip install -r reqs.txt
