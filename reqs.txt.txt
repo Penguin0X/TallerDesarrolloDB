@@ -1,5 +1,0 @@
-django
-pillow
-pymysql
-
-#pip install -r reqs.txt
