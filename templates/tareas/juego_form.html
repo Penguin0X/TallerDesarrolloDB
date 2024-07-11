@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Juego</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+{% block content %}
+<h2>Agregar Juego</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.codigo_barra.label_tag }} 
+        {{ form.codigo_barra }}
+        {% if form.codigo_barra.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.codigo_barra.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.nombreJuego.label_tag }}
+        {{ form.nombreJuego }}
+        {% if form.nombreJuego.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.nombre.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.consola.label_tag }}
+        {{ form.consola }}
+        {% if form.consola.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.consola.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.distribucion.label_tag }}
+        {{ form.distribucion }}
+        {% if form.distribucion.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.distribucion.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.imagen.label_tag }}
+        {{ form.imagen }}
+        {% if form.imagen.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.imagen.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+<h2>Lista de Juegos</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Código de Barra</th>
+            <th>nombre juego</th>
+            <th>Consola</th>
+            <th>Distribución</th>
+            <th>Estado</th>
+            <th>Stock</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for juego in juegos %}
+        <tr>
+            <td>{{ juego.codigo_barra }}</td>
+            <td>{{ juego.nombreJuego }}</td>
+            <td>{{ juego.consola.nombreConsola }}</td>
+            <td>{{ juego.distribucion.siglaDistribucion }}</td>
+            <td>{{ juego.estado }}</td>
+            <td>{{ juego.stock }}</td>
+            <td>
+                {% if juego.imagen %}
+                    <img src="{{ juego.imagen.url }}" alt="{{ juego.nombreJuego }}" width="50" height="50">
+                {% else %}
+                    <img src="{% static 'images/default.png' %}" alt="Imagen Predeterminada" width="50" height="50">
+                {% endif %}
+            </td>
+            <td>                
+                <a href="{% url 'juego_edit' juego.pk %}" class="btn btn-success">Editar</a>
+                <a href="{% url 'juego_delete' juego.pk %}" class="btn btn-danger">Eliminar</a>
+            {% if juego.stock %}
+                <a href="{% url 'gestionar_stock' juego.stock.pk %}" class="btn btn-info">Agregar Stock</a>
+            {% else %}
+                <span class="btn btn-info disabled">Agregar Stock</span>
+            {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

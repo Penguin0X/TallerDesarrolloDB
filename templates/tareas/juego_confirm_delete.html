@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>¿Está seguro que desea eliminar este juego?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar</button>
+    <a href="{% url 'juego_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

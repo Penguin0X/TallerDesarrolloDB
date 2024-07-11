@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear/Editar Notificación{% endblock %}
+
+{% block content %}
+<h1>{{ form.instance.pk|yesno:"Editar,Crear" }} Notificación</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="id_user" class="form-label">Usuario</label>
+        {{ form.user }}
+    </div>
+    <div class="mb-3">
+        <label for="id_message" class="form-label">Mensaje</label>
+        {{ form.message }}
+    </div>
+    <div class="mb-3">
+        <label for="id_read" class="form-label">Leído</label>
+        {{ form.read }}
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock %}

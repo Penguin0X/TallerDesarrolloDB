@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Personal</title>
+</head>
+<body>
+    <h1>Lista de Personal</h1>
+    <ul>
+        {% for personal in personal_list %}
+        <li>{{ personal.nombrePersonal }} - {{ personal.rol }} - {{ personal.telefono }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

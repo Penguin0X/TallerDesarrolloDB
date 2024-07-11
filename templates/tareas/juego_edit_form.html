@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Juego</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+{% block content %}
+<h2>Editar Juego</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.codigo_barra.label_tag }} 
+        {{ form.codigo_barra }}
+        {% if form.codigo_barra.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.codigo_barra.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.nombreJuego.label_tag }}
+        {{ form.nombreJuego }}
+        {% if form.nombreJuego.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.nombreJuego.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.consola.label_tag }}
+        {{ form.consola }}
+        {% if form.consola.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.consola.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.distribucion.label_tag }}
+        {{ form.distribucion }}
+        {% if form.distribucion.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.distribucion.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.imagen.label_tag }}
+        {{ form.imagen }}
+        {% if form.imagen.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.imagen.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock %}

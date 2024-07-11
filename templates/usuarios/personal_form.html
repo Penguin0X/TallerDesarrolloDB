@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create User</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+<body>
+    <h2>Create User</h2>
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Información de Usuario</legend>
+            {{ user_form.non_field_errors }}
+            <div>
+                {{ user_form.username.label_tag }} {{ user_form.username }}
+                {{ user_form.username.errors }}
+            </div>
+            <div>
+                {{ user_form.email.label_tag }} {{ user_form.email }}
+                {{ user_form.email.errors }}
+            </div>
+            <div>
+                {{ user_form.password.label_tag }} {{ user_form.password }}
+                {{ user_form.password.errors }}
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Información Personal</legend>
+            {{ personal_form.non_field_errors }}
+            <div>
+                {{ personal_form.nombrePersonal.label_tag }} {{ personal_form.nombrePersonal }}
+                {{ personal_form.nombrePersonal.errors }}
+            </div>
+            <div>
+                {{ personal_form.rol.label_tag }} {{ personal_form.rol }}
+                {{ personal_form.rol.errors }}
+            </div>
+            <div>
+                {{ personal_form.telefono.label_tag }} {{ personal_form.telefono }}
+                {{ personal_form.telefono.errors }}
+            </div>
+        </fieldset>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>
